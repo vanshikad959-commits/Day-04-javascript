@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="violet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orbits. – Web products for growing teams</title>
+  <meta name="description" content="Orbits. designs, builds and launches fast, reliable web products for growing teams.">
+  <meta name="theme-color" content="#02030a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%230d0820'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%239b6bff'/%3E%3Cellipse cx='32' cy='32' rx='26' ry='9' fill='none' stroke='%23d36bff' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to content</a>
+
+  <!-- Animated space background (stars, grid floor, planetary systems) -->
+  <canvas id="space" aria-hidden="true"></canvas>
+
+  <!-- HUD frame with notched tabs -->
+  <div class="frame" aria-hidden="true">
+    <span class="tab tab-top"></span>
+    <span class="tab tab-bottom"><i>DOCK</i></span>
+    <span class="tab tab-left"></span>
+    <span class="tab tab-right"></span>
+  </div>
+
+  <!-- Top-left brand, top-right system readout -->
+  <header class="hud-top">
+    <a class="brand" href="#top">
+      <span class="brand-name">Orbits<span>.</span></span>
+      <span class="brand-sub">[ Web products for growing teams ]</span>
+    </a>
+
+    <div class="readout" aria-hidden="true">
+      <div class="gauges">
+        <div class="gauge"><span>Quality</span><i class="bar"><b id="qualityBar"></b></i><em id="qualityVal">100%</em></div>
+        <div class="gauge"><span>Fps</span><i class="bar"><b id="fpsBar"></b></i><em id="fpsVal">--</em></div>
+      </div>
+      <p class="sys">C://SYSTEMS_FILES/ORBITS/<br>/SITE.EXE<br>///SESSION ACTIVE<br>--RENDERING OPTIMIZED--</p>
+    </div>
+  </header>
+
+  <!-- Bottom-right: responsive navigation dock -->
+  <nav class="dock" aria-label="Main">
+    <button class="menu-btn hud-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">Systems</button>
+    <div class="dock-panel" id="navMenu">
+      <p class="dock-title">Travel through<br>planetary systems</p>
+      <ul>
+        <li><a href="#top">Overview</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#playground">Live demo</a></li>
+        <li><a href="#quotes">Transmissions</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#register">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Bottom-left controls -->
+  <div class="hud-bottom">
+    <a class="cta" href="#contact">Let&rsquo;s get in touch</a>
+    <button class="hud-btn" id="simpleBtn" type="button" aria-pressed="false"><span class="txt">Simplified view</span> <span aria-hidden="true">&rsaquo;</span></button>
+    <button class="hud-btn" id="themeToggle" type="button" aria-pressed="true"><span class="label">Light mode</span></button>
+  </div>
+
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  <div class="coords" id="coords" aria-hidden="true">x:0 y:0</div>
+
+  <main id="top">
+
+    <!-- ===== Hero: greeting, live clock, 3D orbit ===== -->
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="hello" id="greeting">Hello</p>
+        <h1>Web products that keep your business moving.</h1>
+        <p class="lead">Orbits. helps growing teams design, build and launch fast, reliable websites and web apps, with strategy, design and engineering in one place.</p>
+
+        <div class="clock" aria-live="off">
+          <span class="clock-label">Local time</span>
+          <time id="clockTime" class="clock-time">--:--:--</time>
+          <span id="clockDate" class="clock-date"></span>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#register">Start free</a>
+          <a class="btn btn-ghost" href="#playground">See it live</a>
+        </div>
+        <p class="hint">Tip: hover the planet to pause it, double-click to change the accent colour.</p>
+      </div>
+
+      <div class="scene" id="scene">
+        <div class="system" id="system">
+          <div class="ring r1"><span class="moon"></span></div>
+          <div class="ring r2"><span class="moon"></span></div>
+          <div class="ring r3"><span class="moon"></span></div>
+          <button class="planet" id="planet" type="button" aria-label="Planet. Double-click to change colour"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section class="section container" id="services">
+      <div class="section-head center">
+        <h2>Everything you need to ship</h2>
+        <p>One focused team covers the whole journey from first sketch to a site your customers can rely on.</p>
+      </div>
+      <div class="services">
+        <article class="card service">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg>
+          </span>
+          <h3>Web design</h3>
+          <p>Clear, accessible interfaces that match your brand and work on every screen size.</p>
+        </article>
+        <article class="card service">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg>
+          </span>
+          <h3>Full-stack development</h3>
+          <p>Front-end and back-end code that is tested, documented and easy for your team to extend.</p>
+        </article>
+        <article class="card service">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15c-1 3-1 5-1 5s2 0 5-1M14 4c3-1 6-1 6-1s0 3-1 6l-7 7-4-4zM9 12l-3-1 2-3 3 .5"/></svg>
+          </span>
+          <h3>Launch and support</h3>
+          <p>Deployment, performance checks and ongoing care so the site stays fast after go-live.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Process ===== -->
+    <section class="section container" id="process">
+      <div class="section-head center">
+        <h2>How we work</h2>
+        <p>A simple three-step process with a clear deliverable at the end of each one.</p>
+      </div>
+      <ol class="steps">
+        <li class="card step"><span class="step-no">1</span><h3>Discover</h3><p>We learn your goals, audience and constraints, then agree on scope and timeline.</p></li>
+        <li class="card step"><span class="step-no">2</span><h3>Build</h3><p>Design and development run in short cycles, with a working preview after each one.</p></li>
+        <li class="card step"><span class="step-no">3</span><h3>Launch</h3><p>We test, deploy and hand over documentation, then stay on hand for support.</p></li>
+      </ol>
+    </section>
+
+    <!-- ===== Event playground ===== -->
+    <section class="section container" id="playground">
+      <div class="section-head">
+        <h2>See the interactions live</h2>
+        <p>Each card below responds to a different kind of input. The activity log records what fired and when.</p>
+      </div>
+
+      <div class="play-grid">
+        <div class="card">
+          <h3>click</h3>
+          <p>Press the button to count your clicks.</p>
+          <button class="btn btn-primary" id="clickBtn" type="button">Clicked <b id="clickCount">0</b> times</button>
+        </div>
+
+        <div class="card flip-card" id="dblCard" tabindex="0">
+          <h3>dblclick</h3>
+          <p id="dblText">Double-click this card to flip its state.</p>
+        </div>
+
+        <div class="card hover-card" id="hoverCard">
+          <h3>mouseover / mouseleave</h3>
+          <p id="hoverText">Move your mouse over this card.</p>
+        </div>
+
+        <div class="card">
+          <h3>keypress / input</h3>
+          <label for="keyInput" class="sr-only">Type something</label>
+          <input id="keyInput" class="field" type="text" placeholder="Type here" autocomplete="off">
+          <p class="mini">Last key: <b id="lastKey">none</b> · Length: <b id="keyLen">0</b></p>
+        </div>
+
+        <div class="card">
+          <h3>submit</h3>
+          <form id="playForm" novalidate>
+            <label for="playName" class="sr-only">Your name</label>
+            <input id="playName" class="field" type="text" placeholder="Your name">
+            <button class="btn btn-ghost" type="submit">Say hello</button>
+          </form>
+          <p class="mini" id="playMsg">Submitting does not reload the page.</p>
+        </div>
+
+        <div class="card log-card">
+          <h3>Activity log</h3>
+          <ol id="eventLog" class="log"><li class="empty">No activity yet. Try one of the cards.</li></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Random quote generator ===== -->
+    <section class="section container" id="quotes">
+      <div class="quote-card">
+        <p class="quote-kicker">Words our team builds by</p>
+        <p class="quote-text" id="quoteText">Press the button for a quote.</p>
+        <p class="quote-author" id="quoteAuthor"></p>
+        <div class="quote-actions">
+          <button class="btn btn-primary" id="quoteBtn" type="button">New quote</button>
+          <span class="mini" id="quoteCount">0 quotes shown</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact (character counter) ===== -->
+    <section class="section container" id="contact">
+      <div class="split">
+        <div class="section-head left">
+          <h2>Tell us about your project</h2>
+          <p>Share a few lines on what you want to build. We reply within two working days with next steps.</p>
+          <ul class="rules">
+            <li>Keep it short, 200 characters or fewer</li>
+            <li>Mention your goal and any deadline</li>
+          </ul>
+        </div>
+        <form class="card" id="contactForm" novalidate>
+          <label for="story" class="field-label">Project brief</label>
+          <textarea id="story" class="field" rows="5" maxlength="200" placeholder="We need a booking website for our studio, live by January."></textarea>
+          <div class="meter" aria-hidden="true"><div class="meter-fill" id="meterFill"></div></div>
+          <p class="mini"><span id="charCount">0</span> / 200 characters · <span id="wordCount">0</span> words</p>
+          <p class="error" id="storyError" role="alert"></p>
+          <button class="btn btn-primary" type="submit">Send brief</button>
+          <p class="success" id="contactSuccess" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== Registration form ===== -->
+    <section class="section container" id="register">
+      <div class="split">
+        <div class="section-head left">
+          <h2>Create your free account</h2>
+          <p>Set up access to the client portal in under a minute. Each field is checked as you type, so you can fix mistakes straight away.</p>
+          <ul class="rules">
+            <li>Full name: letters only, at least 3 characters</li>
+            <li>Email: a valid address</li>
+            <li>Phone: 10 digits starting 6–9, optional +91</li>
+            <li>Password: at least 8 characters</li>
+          </ul>
+        </div>
+
+        <form class="card form" id="regForm" novalidate>
+          <div class="group">
+            <label for="fullName" class="field-label">Full name</label>
+            <input id="fullName" name="fullName" class="field" type="text" autocomplete="name" placeholder="Vanshika Dhiman">
+            <p class="error" id="fullNameError" role="alert"></p>
+          </div>
+
+          <div class="group">
+            <label for="email" class="field-label">Email</label>
+            <input id="email" name="email" class="field" type="email" autocomplete="email" placeholder="you@example.com">
+            <p class="error" id="emailError" role="alert"></p>
+          </div>
+
+          <div class="group">
+            <label for="phone" class="field-label">Phone number</label>
+            <input id="phone" name="phone" class="field" type="tel" autocomplete="tel" placeholder="9876543210">
+            <p class="error" id="phoneError" role="alert"></p>
+          </div>
+
+          <div class="group">
+            <label for="password" class="field-label">Password</label>
+            <div class="pw-wrap">
+              <input id="password" name="password" class="field" type="password" autocomplete="new-password" placeholder="At least 8 characters">
+              <button type="button" class="pw-toggle" data-target="password" aria-label="Show password">Show</button>
+            </div>
+            <div class="strength" aria-hidden="true"><span id="strengthBar"></span></div>
+            <p class="mini" id="strengthText">Strength: none</p>
+            <p class="error" id="passwordError" role="alert"></p>
+          </div>
+
+          <div class="group">
+            <label for="confirmPassword" class="field-label">Confirm password</label>
+            <div class="pw-wrap">
+              <input id="confirmPassword" name="confirmPassword" class="field" type="password" autocomplete="new-password" placeholder="Repeat password">
+              <button type="button" class="pw-toggle" data-target="confirmPassword" aria-label="Show confirm password">Show</button>
+            </div>
+            <p class="error" id="confirmPasswordError" role="alert"></p>
+          </div>
+
+          <button class="btn btn-primary wide" type="submit">Create account</button>
+          <p class="mini center">By creating an account you agree to our terms of service.</p>
+          <p class="success" id="formSuccess" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot-grid">
+      <div>
+        <a class="brand" href="#top">Orbits<span>.</span></a>
+        <p class="foot-blurb">Design and engineering for growing teams. Based in India, working worldwide.</p>
+      </div>
+      <nav aria-label="Company">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Product">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#playground">Live demo</a></li>
+          <li><a href="#quotes">Inspiration</a></li>
+          <li><a href="#register">Create account</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container foot-bottom">
+      <p>© <span id="year">2026</span> Orbits. All rights reserved.</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
